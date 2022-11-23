@@ -22,20 +22,6 @@ app.get('/about', (request, response) => {
 app.get('/version', (request, response) => {
 	console.log('Calling "/version" on the Node.js server.')
 	response.type('text/plain')
-	response.send('Version: '+majorVersion+'.'+minorVersion)
-})
-
-// Return the value of 2 plus 2.
-app.get('/2plus2', (request, response) => {
-	console.log('Calling "/2plus2" on the Node.js server.')
-	response.type('text/plain')
-	response.send('4')
-})
-
-// Add x and y which are both passed in on the URL. 
-app.get('/add-two-integers', (request, response) => {
-	console.log('Calling "/add-two-integers" on the Node.js server.')
-	var inputs = url.parse(request.url, true).query
 	let x = parseInt(inputs.x)
 	let y = parseInt(inputs.y)
 	let sum = x + y
