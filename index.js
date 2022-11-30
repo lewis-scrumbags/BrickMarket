@@ -7,12 +7,44 @@ var dt = require('./date-time');
 const port = process.env.PORT || 3000
 const majorVersion = 1
 const minorVersion = 2
+const bodyParser = require("body-parser");
+// const { stringify } = require('querystring');
+app.use(bodyParser.json())
 
 // Use Express to publish static HTML, CSS, and JavaScript files that run in the browser. 
 app.use(express.static(__dirname + '/static'))
 
+
+// const element = {
+// 	loginUsername: String,
+// 	loginPassword: String,
+// 	registerUsername: string,
+// 	registerPassword: String,
+// 	registerEmail: String
+// }
+
 // The app.get functions below are being processed in Node.js running on the server.
 // Implement a custom About page.
+app.post('/login', function(request, response){
+	console.log(request.body);
+	let login = request.body.username;
+	let password = request.body.password;
+	let confirm = "confirm";
+	const responseText = JSON.stringify(confirm);
+	response.json(responseText);
+	console.log(responseText);
+})
+app.post('/register', function(request, response){
+	console.log(request.body);
+	let registerUsername = request.body.registerUsername;
+	let registerEmail = request.body.registerEmail;
+	let registerPassword = request.body.registerPassword;
+	let finalAnswer = registerUsername + registerPassword + registerEmail;
+	const loginPasswordEmail = JSON.stringify(finalAnswer);
+	response.json(loginPasswordEmail);
+	console.log(loginPasswordEmail);
+})
+
 app.get('/about', (request, response) => {
 	console.log('Calling "/about" on the Node.js server.')
 	response.type('text/plain')
@@ -29,23 +61,6 @@ app.get('/version', (request, response) => {
 	response.send(sum.toString())
 })
 
-// Template for calculating BMI using height in feet/inches and weight in pounds.
-app.get('/calculate-bmi', (request, response) => {
-	console.log('Calling "/calculate-bmi" on the Node.js server.')
-	var inputs = url.parse(request.url, true).query
-	const heightFeet = parseInt(inputs.feet)
-	const heightInches = parseInt(inputs.inches)
-	const weight = parseInt(inputs.lbs)
-
-	console.log('Height:' + heightFeet + '\'' + heightInches + '\"')
-	console.log('Weight:' + weight + ' lbs.')
-
-	// Todo: Implement unit conversions and BMI calculations.
-	// Todo: Return BMI instead of Todo message.
-
-	response.type('text/plain')
-	response.send('Todo: Implement "/calculate-bmi"')
-})
 
 // Test a variety of functions.
 app.get('/test', (request, response) => {
@@ -72,38 +87,6 @@ app.get('/test', (request, response) => {
 
     // Close the response
     response.end('<h3>The End.</h3>');
-})
-
-// Return Batman as JSON.
-var spiderMan = {
-	"firstName":"Bruce",
-	"lastName":"Wayne",
-	"preferredName":"Batman",
-	"email":"darkknight@lewisu.edu",
-	"phoneNumber":"800-bat-mann",
-	"city":"Gotham",
-	"state":"NJ",
-	"zip":"07101",
-	"lat":"40.73",
-	"lng":"-74.17",
-	"favoriteHobby":"Flying",
-	"class":"cpsc-24700-001",
-	"room":"AS-104-A",
-	"startTime":"2 PM CT",
-	"seatNumber":"",
-	"inPerson":[
-		"Monday",
-		"Wednesday"
-	],
-	"virtual":[
-		"Friday"
-	]
-}
-
-app.get('/batman', (request, response) => {
-	console.log('Calling "/batman" on the Node.js server.')
-	response.type('application/json')
-	response.send(JSON.stringify(spiderMan, null, 4))
 })
 
 // Custom 404 page.

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="login.css">
+    <script src="login.js"></script>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <form class="form" id="login">
+                <h1 class="formTitle">Login</h1>
+                <div class="formMessage formMessageError"></div>
+                <div class="formInputGroup">
+                    <input type="text" class="formInput" autofocus placeholder="Username" id="username">
+                    <div class="formInputErrorMessage"></div>
+                </div>
+                <div class="formInputGroup">
+                    <input type="password" class="formInput" autofocus placeholder="password" id ="password">
+                    <div class="formInputErrorMessage"></div>
+                </div>
+                <button class="formButton" type="button" onclick="login()">Login</button>
+                    <p class="formText">
+                        <a href= "register.html" id="createAccountLink" >Create Account</a>
+                    </p>
+            </form>
+    </main>
+</body>
