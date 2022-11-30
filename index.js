@@ -29,7 +29,7 @@ app.post('/login', function(request, response){
 	console.log(request.body);
 	let login = request.body.username;
 	let password = request.body.password;
-	let confirm = "confirm";
+	let confirm = login + password;
 	const responseText = JSON.stringify(confirm);
 	response.json(responseText);
 	console.log(responseText);

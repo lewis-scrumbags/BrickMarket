@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="style.css">
     <script src="login.js"></script>
 </head>
 <body>
     <main>
         <div class="container">
-            <form class="form" id="login">
+            <form class="form-control" id="login">
                 <h1 class="formTitle">Login</h1>
                 <div class="formMessage formMessageError"></div>
                 <div class="formInputGroup">
@@ -17,9 +17,12 @@
                     <input type="password" class="formInput" autofocus placeholder="password" id ="password">
                     <div class="formInputErrorMessage"></div>
                 </div>
-                <button class="formButton" type="button" onclick="login()">Login</button>
+                <button class="button" style="background-color:green; border:green;" type="submit" onclick="login()">Login</button>
                     <p class="formText">
-                        <a href= "register.html" id="createAccountLink" >Create Account</a>
+                        <a href= "register.html" id="" >Create Account</a>
+                    </p>
+                    <p class="formText">
+                        <a href= "index.html" id="" >Return Home</a>
                     </p>
             </form>
     </main>

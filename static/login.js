@@ -41,7 +41,6 @@ async function login(){
     const headers = {'content-Type': 'application/json'}
     const response = await fetch('/login', {method: 'POST', body, headers})
     const data = await response.json();
-    document.getElementById("usernamePassword").value = data;
 }
 async function register(){
     const registerUsername = document.getElementById("registerUsername").value;
@@ -51,5 +50,4 @@ async function register(){
     const headers = {'content-Type': 'application/json'}
     const response = await fetch('/register', {method: 'POST', body, headers})
     const data = await response.json();
-    document.getElementById("usernamePasswordEmail").value = data;
 }
