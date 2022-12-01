@@ -3,11 +3,18 @@ app = express()
 
 var url = require('url');
 var dt = require('./date-time');
-
 const port = process.env.PORT || 3000
 const majorVersion = 1
 const minorVersion = 2
 const bodyParser = require("body-parser");
+const mongoose = require('mongoose')
+const User = require('./model/user')
+const bcrypt = require('bcryptjs')
+
+mongoose.connect('mongodb://localhost:27017/BrickMarket', {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+})
 // const { stringify } = require('querystring');
 app.use(bodyParser.json())
 
@@ -15,34 +22,46 @@ app.use(bodyParser.json())
 app.use(express.static(__dirname + '/static'))
 
 
-// const element = {
-// 	loginUsername: String,
-// 	loginPassword: String,
-// 	registerUsername: string,
-// 	registerPassword: String,
-// 	registerEmail: String
-// }
-
 // The app.get functions below are being processed in Node.js running on the server.
 // Implement a custom About page.
-app.post('/login', function(request, response){
+app.post('/login', async (request, response) => {
 	console.log(request.body);
 	let login = request.body.username;
 	let password = request.body.password;
-	let confirm = login + password;
-	const responseText = JSON.stringify(confirm);
-	response.json(responseText);
-	console.log(responseText);
+	response.json({status: 'Successful', data:'asdfasdf'});
 })
-app.post('/register', function(request, response){
+app.post('/register', async (request, response) => {
 	console.log(request.body);
-	let registerUsername = request.body.registerUsername;
-	let registerEmail = request.body.registerEmail;
-	let registerPassword = request.body.registerPassword;
-	let finalAnswer = registerUsername + registerPassword + registerEmail;
-	const loginPasswordEmail = JSON.stringify(finalAnswer);
-	response.json(loginPasswordEmail);
-	console.log(loginPasswordEmail);
+	const username = request.body.registerUsername;
+	const email = request.body.registerEmail;
+	const registerPassword = request.body.registerPassword;
+	//username and password requirements
+	if(!username || typeof username !== 'string'){
+		return response.json({status: 'error', error: 'Invalid Username'})
+	}
+	if(!registerPassword || typeof registerPassword !== 'string'){
+		return response.json({status: 'error', error: 'Invalid Username'})
+	}
+	if(registerPassword.length < 9){
+		return response.json({status: 'error', error: 'Password must be at least 8 characters long'})
+	}
+	const password = await bcrypt.hash(registerPassword, 10)
+	try{
+		const res = await User.create({
+			username,
+			password,
+			email
+		})
+		console.log("User created: ", res)
+	}catch(error){
+		//11000 is the error for duplicate key. Use console.log(JSON.stringify(error)) and run to see error code
+		if(error.code==11000){
+			 return response.json({status: 'error', error: 'Username already exists'})
+			
+		}
+		throw error
+	}
+	response.json({status: 'Successful'})
 })
 
 app.get('/about', (request, response) => {

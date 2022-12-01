@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="style.css">
-    <script src="login.js"></script>
 </head>
 <body>
     <main>
-        <form class="form-control" id="login">
+        <form class="form-control" id="registerForm">
             <h1 class="formTitle">Create Account</h1>
             <div class="formMessage formMessageError"></div>
             <div class="formInputGroup">
-                <input type="text" class="formInput" autofocus placeholder="Username" id="registerUsername">
+                <input type="text"autocomplete="off" class="formInput" autofocus placeholder="Username" id="registerUsername">
                 <div class="formInputErrorMessage"></div>
             </div>
             <div class="formInputGroup">
@@ -21,7 +20,7 @@
                 <div class="formInputErrorMessage"></div>
             </div>
 
-            <button class="button" style="background-color:green; border:green;" type="submit" onclick="register()">register</button>
+            <button class="button" style="background-color:green; border:green;" type="submit" value="Submit Form">register</button>
                 <p class="formText">
                     <a href= "login.html" id="" >Already have an account? Login</a>
                 </p>
@@ -29,6 +28,25 @@
                     <a href= "index.html" id="" >Return Home</a>
                 </p>
         </form>
+        <script>
+            const form = document.getElementById("registerForm")
+            form.addEventListener('submit', register)
+            async function register(event){
+                event.preventDefault()
+                const registerUsername = document.getElementById("registerUsername").value;
+                const registerEmail = document.getElementById("registerEmail").value;
+                const registerPassword = document.getElementById("registerPassword").value;
+                const result = await fetch('/register', {method: 'POST', 
+                    body:JSON.stringify({registerUsername, registerPassword,registerEmail}), 
+                    headers: {'content-Type': 'application/json'}
+                }).then((response) => response.json())
+            }
+            if (result.status == 'Successful'){
+                alert("User Created!")
+            } else{
+                alert(result.error)
+            }
+        </script>
         </div>
     </main>
 </body>
