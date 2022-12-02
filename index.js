@@ -10,7 +10,9 @@ const bodyParser = require("body-parser");
 const mongoose = require('mongoose')
 const User = require('./model/user')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
+const SECRET_TOKEN = 'asdfalkef2434543efasdgerhjv>,-om-o#*_($(*Efemoefgjf'
 mongoose.connect('mongodb://localhost:27017/BrickMarket', {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
@@ -26,9 +28,28 @@ app.use(express.static(__dirname + '/static'))
 // Implement a custom About page.
 app.post('/login', async (request, response) => {
 	console.log(request.body);
-	let login = request.body.username;
-	let password = request.body.password;
-	response.json({status: 'Successful', data:'asdfasdf'});
+	const username = request.body.username;
+	const password = request.body.password;
+	const user =  await User.findOne({username, password}).lean()
+	if (!user){
+		return res.json({status: 'error', error: 'Invalid username or password'})
+	}
+	if (await bcrypt.compare(password, user.password)){		//Checks username password combination
+
+		const token = jwt.sign(
+			{
+			id: user._id, 
+			username: user.username
+			},
+			SECRET_TOKEN
+			
+		)
+
+		return res.json({status: 'Successful', data: token})
+	} 
+
+
+	response.json({status: 'error', error:'Invalid username or password'});
 })
 app.post('/register', async (request, response) => {
 	console.log(request.body);
