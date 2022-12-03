@@ -1,8 +1,8 @@
-const uri = "[[YOUR-CONNECTION-STRING-HERE]]"	
-// Example uri:
-// const uri = "mongodb+srv://testMongoDBUserName:8L4kkR8KszHZTI7S@cluster0.fei8p8f.mongodb.net/?retryWrites=true&w=majority"	
 
-const databaseName = "movieDatabase"
-const collectionName = "movies"
+//MongoDB username cluster : BrickMarketUser
+//MongoDB cluster password: BrickMarketPassword
+const uri = "mongodb+srv://BrickMarketUser:BrickMarketPassword@cluster0.feqkxqj.mongodb.net/?retryWrites=true&w=majority"	
+const databaseName = "BrickMarket"
+const collectionName = "leggos"
 
 module.exports = { uri, databaseName, collectionName };
