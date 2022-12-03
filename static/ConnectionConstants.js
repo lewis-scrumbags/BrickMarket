@@ -3,6 +3,6 @@
 //MongoDB cluster password: BrickMarketPassword
 const uri = "mongodb+srv://BrickMarketUser:BrickMarketPassword@cluster0.feqkxqj.mongodb.net/?retryWrites=true&w=majority"	
 const databaseName = "BrickMarketDatabase"
-const collectionName = "LeggoCollection"
+const collectionName = "LegoCollection"
 
 module.exports = { uri, databaseName, collectionName };

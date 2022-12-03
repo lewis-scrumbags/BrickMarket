@@ -4,7 +4,7 @@ const { ObjectID } = require('bson');
 
 async function readOne(uri, databaseName, collectionName) {
 	const client = new MongoClient(uri);
-	const result = await client.db(databaseName).collection(collectionName).findOne({"_id":ObjectID("62a22ef688f0e15b9d2d80f6")});
+	const result = await client.db(databaseName).collection(collectionName).findOne({"_id":ObjectID("638adf34464e41a829e89142")});
     console.log(result);
 	client.close()	
 }
