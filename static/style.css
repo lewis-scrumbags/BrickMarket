@@ -1,4 +1,10 @@
 
+.h1{
+  background-color: rgb(255, 243, 106);
+  text-align: center;
+  color: red;
+  font-family: OCR A Std, monospace;
+}
 main {
   background-color: rgb(243, 250, 147);
     width: 80%;
