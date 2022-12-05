@@ -1,6 +1,5 @@
 const express = require('express')
 app = express()
-
 var url = require('url');
 var dt = require('./date-time');
 const port = process.env.PORT || 3000
@@ -13,7 +12,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const SECRET_TOKEN = 'asdfalkef2434543efasdgerhjv>,-om-o#*_($(*Efemoefgjf'
-mongoose.connect('mongodb://localhost:27017/BrickMarket', {
+mongoose.connect('mongodb://localhost:27017/BrickMarket/BrickMarket', {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 })

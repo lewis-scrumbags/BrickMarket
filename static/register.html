@@ -40,12 +40,13 @@
                     body:JSON.stringify({registerUsername, registerPassword,registerEmail}), 
                     headers: {'content-Type': 'application/json'}
                 }).then((response) => response.json())
-            }
-            if (result.status == 'Successful'){
+                if (result.status == 'Successful'){
                 alert("User Created!")
             } else{
                 alert(result.error)
             }
+            }
+            
         </script>
         </div>
     </main>
