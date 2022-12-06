@@ -41,14 +41,13 @@
             const constants = require('./ConnectionConstants.js');
             const form = document.getElementById("addElement")
             form.addEventListener('submit', create)
-            async function create(event, uri, databaseName, collectionName, title) {
-                event.preventDefault()
+            async function create(uri, databaseName, collectionName, title) {
                 title = docmument.getElementById("title").value;
                 const client = new MongoClient(uri);
-                const result = await client.db(databaseName).collection(collectionName).insertOne({"title": title});
+                const result = await client.db(databaseName).collection(collectionName).insertOne({"title": `${title}`});
                 console.log(result);
                 client.close();
-            }           
+            }
             if (process.argv[2] === undefined) {
                 console.log('Title Required')
             } else {
