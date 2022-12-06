@@ -7,7 +7,6 @@ async function create(uri, databaseName, collectionName, title) {
 	console.log(result);
 	client.close();
 }
-
 // The first user parameter (argv[2]) must be the Title to create/insert.
 if (process.argv[2] === undefined) {
 	console.log('Title Required')

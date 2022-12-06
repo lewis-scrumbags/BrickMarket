@@ -3,6 +3,7 @@
 <head>
     <title>Add Element</title>
     <link rel="stylesheet" href="style.css">
+    <script src="Create.js" />
 </head>
 <body>
 	<main>
@@ -36,25 +37,6 @@
                 <button class="button" style="background-color:green; border:green;" type="submit" value="Submit Form">Create Element</button>
             </div>
         </form>
-        <script>
-            let MongoClient = require('mongodb').MongoClient;
-            const constants = require('./ConnectionConstants.js');
-            const form = document.getElementById("addElement")
-            form.addEventListener('submit', create)
-            async function create(uri, databaseName, collectionName, title) {
-                title = docmument.getElementById("title").value;
-                const client = new MongoClient(uri);
-                const result = await client.db(databaseName).collection(collectionName).insertOne({"title": `${title}`});
-                console.log(result);
-                client.close();
-            }
-            if (process.argv[2] === undefined) {
-                console.log('Title Required')
-            } else {
-                create(constants.uri, constants.databaseName, constants.collectionName, process.argv[2] /* Title */);
-            }
-
-        </script>
     </main>
 </body>
 </html>
