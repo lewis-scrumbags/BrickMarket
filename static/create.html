@@ -40,8 +40,8 @@
             let MongoClient = require('mongodb').MongoClient;
             const constants = require('./ConnectionConstants.js');
             const form = document.getElementById("addElement")
-            form.addEventListener('submit', addElement)
-            async function create(uri, databaseName, collectionName, title, event) {
+            form.addEventListener('submit', create)
+            async function create(event, uri, databaseName, collectionName, title) {
                 event.preventDefault()
                 title = docmument.getElementById("title").value;
                 const client = new MongoClient(uri);
