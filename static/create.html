@@ -43,7 +43,7 @@
             form.addEventListener('submit', addElement)
             async function create(uri, databaseName, collectionName, title, event) {
                 event.preventDefault()
-                title = docmument.getElementById("title")
+                title = docmument.getElementById("title").value;
                 const client = new MongoClient(uri);
                 const result = await client.db(databaseName).collection(collectionName).insertOne({"title":`${title}`});
                 console.log(result);
