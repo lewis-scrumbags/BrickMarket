@@ -7,7 +7,7 @@ const majorVersion = 1
 const minorVersion = 2
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose')
-const User = require('./model/user')
+const User = require('./static/user')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 

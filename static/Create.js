@@ -14,6 +14,3 @@ if (process.argv[2] === undefined) {
 } else {
 	create(constants.uri, constants.databaseName, constants.collectionName, process.argv[2] /* Title */);
 }
-
-
-
