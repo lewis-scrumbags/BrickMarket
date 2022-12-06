@@ -10,7 +10,7 @@
         <form class="form-control" id="addElement">
             <div class="form-group">
                 <label class="control-label">Item ID</label>
-                <input class="form-control" name="itemID"/>
+                <input class="form-control" name="itemID" id="title"/>
             </div>
             <div class="form-group">
                 <label  class="control-label">Design ID</label>
@@ -33,7 +33,7 @@
                 <input class="form-control" name="quantity"/>
             </div>
             <div class="form-group">
-                <button class="button" style="background-color:green; border:green;" type="submit" value="Submit Form">login</button>
+                <button class="button" style="background-color:green; border:green;" type="submit" value="Submit Form">Create Element</button>
             </div>
         </form>
         <script>
@@ -41,7 +41,9 @@
             const constants = require('./ConnectionConstants.js');
             const form = document.getElementById("addElement")
             form.addEventListener('submit', addElement)
-            async function create(uri, databaseName, collectionName, title) {
+            async function create(uri, databaseName, collectionName, title, event) {
+                event.preventDefault()
+                title = docmument.getElementById("title")
                 const client = new MongoClient(uri);
                 const result = await client.db(databaseName).collection(collectionName).insertOne({"title":`${title}`});
                 console.log(result);
