@@ -34,9 +34,25 @@ app.use(express.static(__dirname + '/static'))
 
 // The app.get functions below are being processed in Node.js running on the server.
 // Implement a custom About page.
+let MongoClient = require('mongodb').MongoClient;
+const constants = require('./ConnectionConstants.js');
+const uri = "mongodb+srv://BrickMarketUser:BrickMarketPassword@cluster0.feqkxqj.mongodb.net/?retryWrites=true&w=majority"	
+const databaseName = "BrickMarketDatabase"
+const collectionName = "LegoCollection"
 
-
-app.post("/create", function(req, res){
+module.exports = { uri, databaseName, collectionName };
+// async function created(uri, databaseName, collectionName, title) {
+// 	const client = new MongoClient(uri);
+// 	const result = await client.db(databaseName).collection(collectionName).insertOne({"title":`${title}`});
+// 	console.log(result);
+// 	client.close();
+// }
+// if (process.argv[2] === undefined) {
+// 	console.log('Title Required')
+// } else {
+// 	created(constants.uri, constants.databaseName, constants.collectionName, process.argv[2] /* Title */);
+// }
+app.post("/create", async function(req, res){
 	let newElment = new Element({
 		title: request.body.title
 	})
