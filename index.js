@@ -20,7 +20,7 @@ const Element = mongoose.model("Element", elementSchema)
 
 
 
-mongoose.connect('mongodb://localhost:27017/BrickMarket/BrickMarket', {
+mongoose.connect('mongodb+srv://BrickMarketUser:BrickMarketPassword@cluster0.feqkxqj.mongodb.net/?retryWrites=true&w=majority', {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 })
@@ -35,11 +35,10 @@ app.use(express.static(__dirname + '/static'))
 // Implement a custom About page.
 let MongoClient = require('mongodb').MongoClient;
 const constants = require('./ConnectionConstants.js');
-const uri = "mongodb+srv://BrickMarketUser:BrickMarketPassword@cluster0.feqkxqj.mongodb.net/?retryWrites=true&w=majority"	
+const uri = ""	
 const databaseName = "BrickMarketDatabase"
 const collectionName = "LegoCollection"
 
-module.exports = { uri, databaseName, collectionName };
 // async function created(uri, databaseName, collectionName, title) {
 // 	const client = new MongoClient(uri);
 // 	const result = await client.db(databaseName).collection(collectionName).insertOne({"title":`${title}`});
