@@ -3,15 +3,15 @@
 <head>
     <title>Add Element</title>
     <link rel="stylesheet" href="style.css">
-    <script src="Create.js" ></script>
+    <script src="Create.js"></script>
 </head>
 <body>
 	<main>
         <h1>Add a New Element</h1>
-        <form class="form-control" id="addElement">
+        <form class="form-control" method="post" id="addElement" action="/create">
             <div class="form-group">
                 <label class="control-label">Item ID</label>
-                <input class="form-control" name="itemID" id="title"/>
+                <input class="form-control" name="title" id="title"/>
             </div>
             <div class="form-group">
                 <label  class="control-label">Design ID</label>

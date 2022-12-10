@@ -9,9 +9,18 @@ const bodyParser = require("body-parser");
 const mongoose = require('mongoose')
 const User = require('./static/user')
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const { request } = require('http');
 
 const SECRET_TOKEN = 'asdfalkef2434543efasdgerhjv>,-om-o#*_($(*Efemoefgjf'
+const elementSchema = {
+	title: String
+}
+const Element = mongoose.model("Element", elementSchema)
+
+
+
+
 mongoose.connect('mongodb://localhost:27017/BrickMarket/BrickMarket', {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
@@ -25,6 +34,31 @@ app.use(express.static(__dirname + '/static'))
 
 // The app.get functions below are being processed in Node.js running on the server.
 // Implement a custom About page.
+let MongoClient = require('mongodb').MongoClient;
+const constants = require('./ConnectionConstants.js');
+const uri = "mongodb+srv://BrickMarketUser:BrickMarketPassword@cluster0.feqkxqj.mongodb.net/?retryWrites=true&w=majority"	
+const databaseName = "BrickMarketDatabase"
+const collectionName = "LegoCollection"
+
+module.exports = { uri, databaseName, collectionName };
+// async function created(uri, databaseName, collectionName, title) {
+// 	const client = new MongoClient(uri);
+// 	const result = await client.db(databaseName).collection(collectionName).insertOne({"title":`${title}`});
+// 	console.log(result);
+// 	client.close();
+// }
+// if (process.argv[2] === undefined) {
+// 	console.log('Title Required')
+// } else {
+// 	created(constants.uri, constants.databaseName, constants.collectionName, process.argv[2] /* Title */);
+// }
+app.post("/create", async function(req, res){
+	let newElment = new Element({
+		title: request.body.title
+	})
+	newElment.save();
+
+})
 app.post('/login', async (request, response) => {
 	console.log(request.body);
 	const username = request.body.username;
