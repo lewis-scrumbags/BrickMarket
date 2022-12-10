@@ -1,7 +1,6 @@
 const express = require('express')
 app = express()
 var url = require('url');
-var dt = require('./date-time');
 const port = process.env.PORT || 3000
 const majorVersion = 1
 const minorVersion = 2
