@@ -1,7 +1,6 @@
 const express = require('express')
 app = express()
 var url = require('url');
-var dt = require('./date-time');
 const port = process.env.PORT || 3000
 const majorVersion = 1
 const minorVersion = 2
@@ -36,7 +35,7 @@ app.post('/create', async (request, response) =>{
 	let newElement = new Element({
 		titel: request.body.title
 	})
-
+	newElement.save();
 
 })
 
@@ -46,7 +45,7 @@ app.post('/login', async (request, response) => {
 	const password = request.body.password;
 	const user =  await User.findOne({username, password}).lean()
 	if (!user){
-		return res.json({status: 'error', error: 'Invalid username or password'})
+		return response.json({status: 'error', error: 'Invalid username or password'})
 	}
 	if (await bcrypt.compare(password, user.password)){		//Checks username password combination
 
