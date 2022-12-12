@@ -34,9 +34,7 @@ app.use(express.static(__dirname + '/static'))
 // The app.get functions below are being processed in Node.js running on the server.
 // Implement a custom About page.
 
-app.post('/create', async (request, response) =>{
-	console.log(request.body);
-	
+app.post('/create', async (request, response) =>{	
 	const newElement = await Element.create({
 		title: request.body.title
 	})

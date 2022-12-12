@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 const ElementSchema = new mongoose.Schema({
-    title: {type: String}
+    title: {type: String},
     },{collection: "elements"}
 )
 
-const model = mongoose.model("ElementSchema", ElementSchema)
+const model1 = mongoose.model("ElementSchema", ElementSchema)
 
-module.exports = model
+module.exports = model1
