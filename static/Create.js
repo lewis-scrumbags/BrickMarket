@@ -1,7 +1,12 @@
 const mongoose = require('mongoose');
 
 const ElementSchema = new mongoose.Schema({
-    title: {type: String},
+    itemID: {type: String},
+    deisgnID: {type: String},
+    description: {type: String},
+    color: {type: String},
+    colorID: {type: String},
+    quantity: {type: String},
     },{collection: "elements"}
 )
 

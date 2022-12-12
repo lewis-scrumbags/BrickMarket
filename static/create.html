@@ -10,27 +10,27 @@
         <form class="form-control" id="addElement">
             <div class="form-group">
                 <label class="control-label">Item ID</label>
-                <input class="form-control" name="itemID" id="title"/>
+                <input class="form-control" name="itemID" id="itemID"/>
             </div>
             <div class="form-group">
                 <label  class="control-label">Design ID</label>
-                <input  class="form-control" name="designID"/>
+                <input  class="form-control" name="designID" id="designID"/>
             </div>
             <div class="form-group">
                 <label  class="control-label">Description</label>
-                <input  class="form-control" name="description"/>
+                <input  class="form-control" name="description" id="description"/>
             </div>
             <div class="form-group">
                 <label class="control-label">Color</label>
-                <input class="form-control" name="color"/>
+                <input class="form-control" name="color" id="color"/>
             </div>
             <div class="form-group">
                 <label class="control-label">Color ID</label>
-                <input class="form-control" name="colorID"/>
+                <input class="form-control" name="colorID" id="colorID"/>
             </div>
             <div class="form-group">
                 <label class="control-label">Quantity</label>
-                <input class="form-control" name="quantity"/>
+                <input class="form-control" name="quantity" id="quantity"/>
             </div>
             <div class="form-group">
                 <button class="button" style="background-color:green; border:green;" type="submit" value="Submit Form">Create Element</button>
@@ -41,8 +41,17 @@
                 form.addEventListener('submit', create)
                 async function create(event){
                     event.preventDefault()
-                    const title = document.getElementById("title").value;
-                    const body = JSON.stringify({title})
+                    const itemID = document.getElementById("itemID").value;
+                    const designID  = document.getElementById('designID').value
+                    const description  = document.getElementById('description').value
+
+                    const color  = document.getElementById('color').value
+
+                    const colorID  = document.getElementById('colorID').value
+
+                    const quantity  = document.getElementById('quantity').value
+
+                    const body = JSON.stringify({itemID, designID, description, color, colorID, quantity})
                     const headers = {'content-Type': 'application/json'}
                     const result = await fetch('/create', {method: 'POST', body, headers}).then((response) => response.json())
 

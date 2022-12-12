@@ -36,7 +36,12 @@ app.use(express.static(__dirname + '/static'))
 
 app.post('/create', async (request, response) =>{	
 	const newElement = await Element.create({
-		title: request.body.title
+		itemID: request.body.itemID,
+		designID: request.body.designID, 
+		description: request.body.description, 
+		color: request.body.color, 
+		colorID:  request.body.colorID, 
+		quantity: request.body.quantity
 	})
 })
 
