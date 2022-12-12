@@ -42,7 +42,7 @@
                 form.addEventListener('submit', create)
                 async function create(event){
                     event.preventDefault()
-                    const username = document.getElementById("title").value;
+                    const title = document.getElementById("title").value;
                     const body = JSON.stringify({title})
                     const headers = {'content-Type': 'application/json'}
                     const result = await fetch('/create', {method: 'POST', body, headers}).then((response) => response.json())
