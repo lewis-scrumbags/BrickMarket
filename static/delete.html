@@ -1,33 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Delete Element</title>
+    <title>Add Element</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<div class="topnav">
+    <a class="active" href="index.html">Home Page</a>
+    <a href="login.html">Login Page</a>
+    <a href="create.html">Create Inventory</a>
+    <a href="delete.html">Delete Item from Inventory</a>
+    <a href="details.html">Inventory Page</a>
+	<a href="register.html">Make an Account</a>
+  </div>
 <body>
 	<main>
-        <h4>Delete Element</h4>
-        <hr />
-        <dl class="description-horizontal">
-            <dt class="description-dark">Item ID:</dt>
-            <dd class="description-light">300321</dd>
-            <dt class="description-dark">Design ID:</dt>
-            <dd class="description-light">4000</dd>
-            <dt class="description-dark">Description:</dt>
-            <dd class="description-light">Brick 1x1</dd>
-            <dt class="description-dark">Color:</dt>
-            <dd class="description-light">Red</dd>
-            <dt class="description-dark">Color ID:</dt>
-            <dd class="description-light">85</dd>
-            <dt class="description-dark">Quantity:</dt>
-            <dd class="description-light">1000</dd>
-            <dt class="description-dark">Image:</dt>
-            <dd class="description-light"><img src="https://rondotruck.com/parts/300321.jpg" alt=""></dd>
-        </dl>
-        <form method="post" action="delete">
-            <input type="submit" formaction="delete" value="Delete" class="button-delete" /> | 
-            <a href="/read">Back to List</a>
+        <h1>Add a New Element</h1>
+        <form class="form-control" id="addElement">
+            <div class="form-group">
+                <label class="control-label">Item ID</label>
+                <input class="form-control" name="itemID" id="itemID"/>
+            </div>
+            <div class="form-group">
+                <label  class="control-label">Design ID</label>
+                <input  class="form-control" name="designID" id="designID"/>
+            </div>
+            <div class="form-group">
+                <label  class="control-label">Description</label>
+                <input  class="form-control" name="description" id="description"/>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Color</label>
+                <input class="form-control" name="color" id="color"/>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Color ID</label>
+                <input class="form-control" name="colorID" id="colorID"/>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Quantity</label>
+                <input class="form-control" name="quantity" id="quantity"/>
+            </div>
+            <div class="form-group">
+                <button class="button" style="background-color:green; border:green;" type="submit" value="Submit Form">Delete Element</button>
+            </div>
         </form>
+        <script>
+                const form = document.getElementById('addElement')
+                form.addEventListener('submit', create)
+                async function create(event){
+                    event.preventDefault()
+                    const itemID = document.getElementById("itemID").value;
+                    const designID  = document.getElementById('designID').value
+                    const description  = document.getElementById('description').value
+
+                    const color  = document.getElementById('color').value
+
+                    const colorID  = document.getElementById('colorID').value
+
+                    const quantity  = document.getElementById('quantity').value
+
+                    const body = JSON.stringify({itemID, designID, description, color, colorID, quantity})
+                    const headers = {'content-Type': 'application/json'}
+                    const result = await fetch('/delete', {method: 'POST', body, headers}).then((response) => response.json())
+                    if (result == "Item Was deleted!"){
+                        alert (result)
+                    }else{
+                        alert(result)
+                    }
+            }
+        </script>
+
+
     </main>
 </body>
 </html>

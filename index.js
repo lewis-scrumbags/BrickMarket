@@ -45,6 +45,20 @@ app.post('/create', async (request, response) =>{
 	})
 	response.json("Item added!")
 })
+app.post('/delete', async (request, response) => {
+		const itemID =  request.body.itemID;
+		const designID = request.body.designID;
+		const description = request.body.description;
+		const color = request.body.color;
+		const colorID =  request.body.colorID;
+		const quantity = request.body.quantity;
+		const element = await Element.findOneAndDelete({itemID, designID, description, color, colorID, quantity})
+		if (element == null){
+			response.json("Item does not exist!")
+		}else{
+			response.json("Item Was deleted!")
+		}
+})
 
 app.post('/login', async (request, response) => {
 	console.log(request.body);
