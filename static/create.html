@@ -37,6 +37,19 @@
                 <button class="button" style="background-color:green; border:green;" type="submit" value="Submit Form">Create Element</button>
             </div>
         </form>
+        <script>
+                const form = document.getElementById('addElement')
+                form.addEventListener('submit', create)
+                async function create(event){
+                    event.preventDefault()
+                    const username = document.getElementById("title").value;
+                    const body = JSON.stringify({title})
+                    const headers = {'content-Type': 'application/json'}
+                    const result = await fetch('/create', {method: 'POST', body, headers}).then((response) => response.json())
+            }
+        </script>
+
+
     </main>
 </body>
 </html>

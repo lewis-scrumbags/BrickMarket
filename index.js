@@ -12,10 +12,16 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const SECRET_TOKEN = 'asdfalkef2434543efasdgerhjv>,-om-o#*_($(*Efemoefgjf'
-mongoose.connect('mongodb://localhost:27017/BrickMarket/BrickMarket', {
+mongoose.connect('mongodb+srv://BrickMarketUser:BrickMarketPassword@cluster0.feqkxqj.mongodb.net/?retryWrites=true&w=majority', {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 })
+
+const elementSchema = {
+	title: String
+}
+
+const Element = mongoose.model("Element", elementSchema)
 // const { stringify } = require('querystring');
 app.use(bodyParser.json())
 
@@ -25,6 +31,15 @@ app.use(express.static(__dirname + '/static'))
 
 // The app.get functions below are being processed in Node.js running on the server.
 // Implement a custom About page.
+
+app.post('/create', async (request, response) =>{
+	let newElement = new Element({
+		titel: request.body.title
+	})
+
+
+})
+
 app.post('/login', async (request, response) => {
 	console.log(request.body);
 	const username = request.body.username;
