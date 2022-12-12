@@ -9,6 +9,13 @@ const mongoose = require('mongoose')
 const User = require('./static/user')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+//MongoDB username cluster : BrickMarketUser
+//MongoDB cluster password: BrickMarketPassword
+const uri = "mongodb+srv://BrickMarketUser:BrickMarketPassword@cluster0.feqkxqj.mongodb.net/?retryWrites=true&w=majority"	
+const databaseName = "BrickMarketDatabase"
+const collectionName = "LegoCollection"
+
+module.exports = { uri, databaseName, collectionName };
 
 const SECRET_TOKEN = 'asdfalkef2434543efasdgerhjv>,-om-o#*_($(*Efemoefgjf'
 mongoose.connect('mongodb+srv://BrickMarketUser:BrickMarketPassword@cluster0.feqkxqj.mongodb.net/?retryWrites=true&w=majority', {
