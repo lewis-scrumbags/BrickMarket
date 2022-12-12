@@ -43,6 +43,7 @@ app.post('/create', async (request, response) =>{
 		colorID:  request.body.colorID, 
 		quantity: request.body.quantity
 	})
+	response.json("Item added!")
 })
 
 app.post('/login', async (request, response) => {
