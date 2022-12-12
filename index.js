@@ -58,7 +58,6 @@ app.post('/login', async (request, response) => {
 			username: user.username
 			},
 			SECRET_TOKEN
-			
 		)
 
 		return res.json({status: 'Successful', data: token})
