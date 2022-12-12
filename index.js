@@ -5,10 +5,11 @@ const port = process.env.PORT || 3000
 const majorVersion = 1
 const minorVersion = 2
 const bodyParser = require("body-parser");
-const mongoose = require('mongoose')
-const User = require('./static/user')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+const mongoose = require('mongoose');
+const User = require('./static/user');
+const Element = require('./static/Create')
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 //MongoDB username cluster : BrickMarketUser
 //MongoDB cluster password: BrickMarketPassword
 const uri = "mongodb+srv://BrickMarketUser:BrickMarketPassword@cluster0.feqkxqj.mongodb.net/?retryWrites=true&w=majority"	
@@ -23,11 +24,6 @@ mongoose.connect(uri, {
 	useUnifiedTopology: true,
 })
 
-const elementSchema = {
-	title: String
-}
-
-const Element = mongoose.model("Element", elementSchema)
 // const { stringify } = require('querystring');
 app.use(bodyParser.json())
 
@@ -39,10 +35,11 @@ app.use(express.static(__dirname + '/static'))
 // Implement a custom About page.
 
 app.post('/create', async (request, response) =>{
-	let newElement = new Element({
+	console.log(request.body);
+	
+	const newElement = await Element.create({
 		title: request.body.title
 	})
-	newElement.save();
 })
 
 app.post('/login', async (request, response) => {
