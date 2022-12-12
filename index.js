@@ -64,7 +64,7 @@ app.post('/login', async (request, response) => {
 	console.log(request.body);
 	const username = request.body.username;
 	const password = request.body.password;
-	const user =  await User.findOne({username, password}).lean()
+	const user =  await User.findOne({username}).lean()
 	if (!user){
 		return response.json({status: 'error', error: 'Invalid username or password'})
 	}
@@ -78,14 +78,13 @@ app.post('/login', async (request, response) => {
 			SECRET_TOKEN
 		)
 
-		return res.json({status: 'Successful', data: token})
+		return response.json({status: 'Successful', data: token})
 	} 
 
 
 	response.json({status: 'error', error:'Invalid username or password'});
 })
 app.post('/register', async (request, response) => {
-	console.log(request.body);
 	const username = request.body.registerUsername;
 	const email = request.body.registerEmail;
 	const registerPassword = request.body.registerPassword;
@@ -117,7 +116,10 @@ app.post('/register', async (request, response) => {
 	}
 	response.json({status: 'Successful'})
 })
+app.post('/inventory', async function (request, response){
 
+
+})
 app.get('/about', (request, response) => {
 	console.log('Calling "/about" on the Node.js server.')
 	response.type('text/plain')
